@@ -1,4 +1,4 @@
-package org.example.xwalkembedded;
+package com.trendever.app;
 
 import android.os.Bundle;
 import android.app.Activity;
