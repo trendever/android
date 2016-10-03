@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import org.xwalk.core.XWalkResourceClient;
 import org.xwalk.core.XWalkView;
 
 public class MainActivity extends Activity {
     private XWalkView mXWalkView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +18,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mXWalkView = (XWalkView) findViewById(R.id.activity_main);
+        mXWalkView.getSettings().setUserAgentString("androidapp");
         mXWalkView.load("https://dev.trendever.com/", null);
     }
 
@@ -38,5 +42,31 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mXWalkView != null) {
+            mXWalkView.pauseTimers();
+            mXWalkView.onHide();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mXWalkView != null) {
+            mXWalkView.resumeTimers();
+            mXWalkView.onShow();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mXWalkView != null) {
+            mXWalkView.onDestroy();
+        }
     }
 }
