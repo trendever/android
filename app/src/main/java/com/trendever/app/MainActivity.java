@@ -4,13 +4,36 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import org.xwalk.core.XWalkResourceClient;
 import org.xwalk.core.XWalkView;
 
 public class MainActivity extends Activity {
     private XWalkView mXWalkView;
+    private View logo;
 
+
+    private class rc extends XWalkResourceClient {
+        public rc(XWalkView view) {
+            super(view);
+        }
+
+        @Override
+        public void onLoadStarted(XWalkView view, String url) {
+            super.onLoadStarted(view, url);
+        }
+
+        @Override
+        public void onLoadFinished(XWalkView view, String url) {
+            super.onLoadFinished(view, url);
+            mXWalkView.setVisibility(View.VISIBLE);
+        }
+
+
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +41,11 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mXWalkView = (XWalkView) findViewById(R.id.activity_main);
+        logo = findViewById(R.id.logo);
+
         mXWalkView.getSettings().setUserAgentString("androidapp");
-        mXWalkView.load("https://dev.trendever.com/", null);
+        mXWalkView.setResourceClient(new rc(mXWalkView));
+        mXWalkView.load("https://dev.trendever.com", null);
     }
 
     @Override
