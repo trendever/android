@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "386625796198",
+    "firebase_url": "https://trendever-f832b.firebaseio.com",
+    "project_id": "trendever-f832b",
+    "storage_bucket": "trendever-f832b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386625796198:android:d1ba609c4eb1235a",
+        "android_client_info": {
+          "package_name": "com.trendever.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386625796198-b7krqoi44feglpjfua20qb7nqqevb87d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4sF8Vhfxqz2pLv34d9wtqHaEQKZBG9hs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
