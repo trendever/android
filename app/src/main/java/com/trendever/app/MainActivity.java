@@ -1,21 +1,11 @@
 package com.trendever.app;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.util.Log;
-import android.webkit.ValueCallback;
-
-import com.google.firebase.iid.FirebaseInstanceId;
-
-import org.xwalk.core.JavascriptInterface;
-import org.xwalk.core.XWalkResourceClient;
-import org.xwalk.core.XWalkUIClient;
+import android.view.View;
+import org.xwalk.core.XWalkPreferences;
 import org.xwalk.core.XWalkView;
 
 public class MainActivity extends Activity {
@@ -40,7 +30,15 @@ public class MainActivity extends Activity {
         mXWalkView.setResourceClient(new ResourceClient(mXWalkView));
         mXWalkView.addJavascriptInterface(new JsBind(this, mXWalkView),"Android");
         mXWalkView.setUIClient(new UiClient(mXWalkView));
-        mXWalkView.load("http://192.168.0.2", null);
+
+        mXWalkView.getSettings().setUseWideViewPort(true);
+        mXWalkView.getSettings().setInitialPageScale(0);
+
+        XWalkPreferences.setValue(XWalkPreferences.REMOTE_DEBUGGING, true);
+
+        mXWalkView.load("http://192.168.1.105", null);
+
+
     }
 
     @Override

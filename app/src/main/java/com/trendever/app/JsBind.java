@@ -1,7 +1,7 @@
 package com.trendever.app;
 
 import android.content.Context;
-import android.util.Log;
+import android.os.Handler;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -9,7 +9,6 @@ import org.xwalk.core.JavascriptInterface;
 import org.xwalk.core.XWalkView;
 
 public class JsBind{
-        private static final String TAG = "JS_Bind";
         private Context context;
         private XWalkView xWalkWebView;
 
@@ -20,7 +19,18 @@ public class JsBind{
 
         @JavascriptInterface
         public void sendToken() {
-            String token = FirebaseInstanceId.getInstance().getToken();
-            Log.d(TAG, "function call");
+            final String token = FirebaseInstanceId.getInstance().getToken();
+            Handler mainHandler = new Handler(context.getMainLooper());
+
+            Runnable myRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    xWalkWebView.load(String.format("javascript:setUserToken('%s','android');",token),null);
+                }
+            };
+            mainHandler.post(myRunnable);
         }
+
+
+
 }
