@@ -3,8 +3,9 @@ package com.trendever.app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
-import android.util.Log;
 import android.view.View;
+
+
 import org.xwalk.core.XWalkPreferences;
 import org.xwalk.core.XWalkView;
 
@@ -23,6 +24,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
+
         mXWalkView = (XWalkView) findViewById(R.id.activity_main);
         logo = findViewById(R.id.logo);
 
@@ -36,8 +40,13 @@ public class MainActivity extends Activity {
 
         XWalkPreferences.setValue(XWalkPreferences.REMOTE_DEBUGGING, true);
 
-        mXWalkView.load("http://192.168.1.105", null);
-
+        Intent intent = this.getIntent();
+        String url = intent.getStringExtra("URL");
+        if (url != null){
+            mXWalkView.load(url, null);
+        }else{
+            mXWalkView.load("https://www.trendever.com/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjYyNzYsImV4cCI6MTUwODU5NTI5M30.3nyl4i3oCf16DE2dxZbkdy6CZDtfe2QW01nRSy-reoY", null);
+        }
 
     }
 
