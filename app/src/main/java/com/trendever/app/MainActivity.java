@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
         if (url != null){
             mXWalkView.load(url, null);
         }else{
-            mXWalkView.load("https://www.trendever.com/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjYyNzYsImV4cCI6MTUwODU5NTI5M30.3nyl4i3oCf16DE2dxZbkdy6CZDtfe2QW01nRSy-reoY", null);
+            mXWalkView.load("https://dev.trendever.com", null);
         }
 
     }
